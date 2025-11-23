@@ -10,9 +10,9 @@
 - Tunnistaa kriittiset haavoittuvuudet rekisteröinti-, autentikointi- ja käyttöoikeusprosesseissa sekä arvioida sovelluksen suojaustaso.  
 
 **Scope:**  
-- Tested components: Käyttäjätietokanta, kirjautumis- ja rekisteröintilomakkeet, roolinhallinta, URL-parametrit, HTTP-pyynnöt, palvelimen tiedostopolut  
-- Exclusions: Ulkoiset integraatiot, kolmannen osapuolen API:t  
-- Test approach: Gray-box (käytössä rajalliset tiedot ja testitunnukset)  
+- Tested components: Käyttäjätietokanta, kirjautumis- ja rekisteröintilomakkeet, roolinhallinta, HTTP-pyynnöt, palvelimen tiedostopolut  
+- Exclusions: - 
+- Test approach: White box  
 
 **Test environment & dates:**  
 - Start: 23.11.2025 11:00  
@@ -33,7 +33,7 @@ Testauksessa havaittiin useita kriittisiä haavoittuvuuksia (SQL Injection, Path
 
 **Overall risk level:** 🔴 **High**  
 
-**Top 5 immediate actions:**  
+**Top 5 immediate actions:**  (HUOM: Hyödynnyetty tekoälyä! MS-Copilot)
 1. Ota käyttöön salasanahashaus (bcrypt/argon2) käyttäjätietokannassa.  
 2. Korjaa SQL Injection -haavoittuvuudet parametrisoiduilla kyselyillä.  
 3. Estä Path Traversal -hyökkäykset validoimalla ja rajoittamalla tiedostopolkuja.  
