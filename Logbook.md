@@ -7,3 +7,5 @@
 | 9.11.2025 | 1 | Final exam of first task, Logbook started  | Final exam of first task, Logbook base made |
 | 15.11.2025 | 7 | PortSwigger environment tasks and recordings  | PortSwigger environment tasks and recordings |
 | 23.11.2025 | 7 | ZAP ja Phase1 tehtävä  | Phase1 tehtävä ja sen PENtestaus |
+| 1.12.2025 | 4 | ZAP ja Part1 Phase2 tehtävä  | Phase2 tehtävä ja sen PENtestaus, raportointi |
+| 2.12.2025 | 3 | ZAP ja Part1 Phase2 tehtävä  | Phase2 tehtävä ja sen PENtestaus, raportointi |
