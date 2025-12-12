@@ -8,7 +8,7 @@
 
 # 1. Overview
 
-Tämä raportti sisältää kaikki tekemäsi manuaaliset testit: Guest, Reserver ja Administrator -tasot. Mukana on mitkä endpointit toimivat, mitkä eivät, ja millaisia poikkeamia tai haavoittuvuuksia löytyi.
+Tämä raportti sisältää manuaaliset testit: Guest, Reserver ja Administrator -tasot. Mukana on mitkä endpointit toimivat, mitkä eivät, ja millaisia poikkeamia tai haavoittuvuuksia löytyi.
 
 Kaikki löydökset perustuvat konkreettisiin URL-testauksiin, DevTools-yrityksiin sekä API-reittien manuaalisiin kokeiluihin.
 
@@ -138,10 +138,12 @@ Mutta useat **POST/PUT/DELETE endpointit puuttuvat tai palauttavat “Not Found�
 
 # 8. Liitteet / Screenshots
 
-(Sijoita kuvakaappaukset tähän, jos haluat.)
+<img width="1004" height="86" alt="image" src="https://github.com/user-attachments/assets/9efa6b2f-92d2-40df-9212-8257868111e0" />
+
 
 ---
 
 # 9. Status
 
 **Kokonaisarvio:❗ Turvallisuuspuutteita, joista osa kriittisiä.**
+
