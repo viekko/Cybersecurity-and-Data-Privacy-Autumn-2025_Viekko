@@ -9,4 +9,5 @@
 | 23.11.2025 | 7 | ZAP ja Phase1 Part1 tehtävä  | Phase1 tehtävä ja sen PENtestaus |
 | 1.12.2025 | 4 | ZAP ja Phase1 Part2 tehtävä  | Phase2 tehtävä ja sen PENtestaus, raportointi |
 | 2.12.2025 | 3 | ZAP ja Phase1 Part2 tehtävä  | Phase2 tehtävä ja sen PENtestaus, raportointi |
-| 2.12.2025 | 11 | ZAP ja Phase2 tehtävä  | Phase2 tehtävä ja sen PWCRACK, raportointi |
+| 8.12.2025 | 11 | ZAP ja Phase2 tehtävä  | Phase2 tehtävä ja sen PWCRACK, raportointi |
+| 12.12.2025 | 10 | Phase3 tehtävä  | Phase3 tehtävä ja sen raportointi |
