@@ -1,14 +1,22 @@
-# Cookie Policy
+# Evästekäytäntö
 
-## 1. What Are Cookies
-Cookies are small text files stored on the user's device.
+## 1. Mitä evästeet ovat
+Evästeet ovat pieniä tekstitiedostoja, jotka tallennetaan käyttäjän laitteelle palvelun toiminnan mahdollistamiseksi.
 
-## 2. Session Cookies
-This service uses session cookies to maintain user login sessions.
+## 2. Istuntoevästeet
+Tämä varausjärjestelmä käyttää istuntoevästeitä:
+- Kirjautumisen ylläpitämiseen
+- Turvallisen käytön varmistamiseen
 
-## 3. No Tracking Cookies
-The system does not use marketing or analytics cookies.
+Istuntoevästeet poistuvat, kun selain suljetaan.
 
-## 4. Managing Cookies
-Users can control cookies through their browser settings.
+## 3. Ei seurantaevästeitä
+Järjestelmä ei käytä:
+- Analytiikkaevästeitä
+- Markkinointi- tai seurant evästeitä
 
+## 4. Evästeiden hallinta
+Käyttäjä voi hallita evästeitä selaimen asetuksista. Evästeiden estäminen voi vaikuttaa palvelun toimivuuteen.
+
+## 5. Muutokset evästekäytäntöön
+Evästekäytäntöä voidaan päivittää, mikäli evästeiden käyttö muuttuu.
