@@ -25,3 +25,10 @@ Joidenkin rekisteröidyn oikeuksien toteutus vaatii ylläpitäjän toimenpiteit�
 
 
 
+<img width="1919" height="173" alt="image" src="https://github.com/user-attachments/assets/1ddb63d7-0191-405e-b3ec-0849018b0afc" />
+
+Kuva 1. Tietokannassa näkyy edelleen käyttäjänimi (sposti), syntymäaika, luontipäivämäärä, rooli ja user token salaamattomana. User password on hashattu.
+
+
+
+
