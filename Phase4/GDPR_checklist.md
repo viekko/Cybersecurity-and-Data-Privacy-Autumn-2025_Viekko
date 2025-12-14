@@ -32,13 +32,19 @@ mikä muodostaa vakavan tietosuojariskin.
 
 
 <img width="1919" height="173" alt="image" src="https://github.com/user-attachments/assets/1ddb63d7-0191-405e-b3ec-0849018b0afc" />
+
 Kuva 1. Tietokannassa näkyy edelleen käyttäjänimi (sposti), syntymäaika, luontipäivämäärä, rooli ja user token salaamattomana. User password on hashattu.
 
+
 <img width="447" height="349" alt="image" src="https://github.com/user-attachments/assets/0e87652a-f03f-4671-9809-5008d4fc34af" />
+
 Kuva 2. Apin kautta näkyy myös raoittamasti käyttäjille toisten tietoja.
 
+
 <img width="970" height="400" alt="image" src="https://github.com/user-attachments/assets/6eaacfe6-0ef7-4ede-8b54-337aa831c852" />
+
 Kuva 3. UI perusteella varaustietojen näkyminen Guestille.
+
 
 
 
