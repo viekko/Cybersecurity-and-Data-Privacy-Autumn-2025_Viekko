@@ -46,7 +46,14 @@ Kuva 2. Apin kautta näkyy myös raoittamasti käyttäjille toisten tietoja.
 Kuva 3. UI perusteella varaustietojen näkyminen Guestille.
 
 
+<img width="523" height="501" alt="image" src="https://github.com/user-attachments/assets/020a2aa3-f190-4d6a-8406-4624f77eb80a" />
 
+Kuva 4. Register kohtaa kysyy käyttäjää hyväksymään palvelun käyttöehdot ennen rekisteröintiä.
+
+
+<img width="598" height="405" alt="image" src="https://github.com/user-attachments/assets/72114aee-4dd2-485b-a1c5-f09f36baa20c" />
+
+Kuva 5. Tyhjä Terms of Service. Eli käyttäjä ei tiedä todellisia ehtoja jos haluaa.
 
 
 
