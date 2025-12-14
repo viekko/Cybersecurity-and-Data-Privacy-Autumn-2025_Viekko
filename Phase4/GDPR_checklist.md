@@ -30,16 +30,18 @@ user_tokenit ovat nähtävissä API-rajapintojen kautta ilman riittävää pää
 mikä muodostaa vakavan tietosuojariskin.
 
 
-1. The system is accessed via a web browser. KYLLÄ
-2. Users can register and, after registration, log in to the system. KYLLÄ
-3. A registered and logged-in user acts as either a resource reserver or an administrator. KYLLÄ
-4. The administrator can add, remove, and modify resources and reservations. EI --> EI ONNISTUT KOKEILULLA.
-5. The administrator can delete the reserver. EI --> EI ONNISTUT KOKEILULLA.
-6. A reserver can book a resource if they are over 15 years old. KYLLÄ --> EI VOI KIRJAUTUA REKISTERÖITYÄ PALVELUUN ALLE 15V.
-7. Resources can be booked on an hourly basis. KYLLÄ
-8. The booking system displays booked resources without requiring login, but does not show the reserver's identity KYLLÄ (KUVA 3)
-9. The client, your company, requires that the system complies with GDPR regulations. OSITTAIN.
-10. The system provider has stated that the software is developed following the Privacy by Design (PbD) principle. ALUNPERIN TYHJÄT --> NYT LUOTU UUDET.
+| GDPR-vaatimus | Täyttyy | Huomiot / Testaustulos |
+|---------------|---------|-----------------------|
+| Järjestelmä on käytettävissä verkkoselaimen kautta | ✅ Kyllä | Testattu selainkäytöllä, toimii kuten odotettu. |
+| Käyttäjät voivat rekisteröityä ja kirjautua järjestelmään | ✅ Kyllä | Rekisteröinti ja kirjautuminen toimivat. |
+| Rekisteröity ja kirjautunut käyttäjä toimii joko varaajana tai ylläpitäjänä | ✅ Kyllä | Käyttäjäroolit toimivat oikein. |
+| Ylläpitäjä voi lisätä, poistaa ja muokata resursseja ja varauksia | ❌ Ei | Testauksen perusteella kokeilu ei onnistunut. (Kuva 2) |
+| Ylläpitäjä voi poistaa varaajan | ❌ Ei | Testauksen perusteella ylläpitäjä ei pysty poistamaan käyttäjiä. (Kuva 2) |
+| Varaaja voi varata resurssin, jos on vähintään 15-vuotias | ❌ Ei | Alle 15-vuotiaat eivät voi rekisteröityä palveluun, joten teknisesti rajoitus toteutuu, mutta ei varausprosessin kautta. (Kuva 4) |
+| Resursseja voi varata tuntiperusteisesti | ✅ Kyllä | Varausjärjestelmä tukee tuntivarausta. |
+| Varaustietojen näkyminen ilman kirjautumista ei paljasta varaajan henkilöllisyyttä | ✅ Kyllä | Julkinen näkymä näyttää vain varatut resurssit ilman henkilötietoja. (Kuva 3) |
+| Asiakas vaatii järjestelmän GDPR-yhteensopivuutta | ⚠️ Osittain | Checklist tehty arviointia varten, mutta järjestelmässä havaittiin puutteita (user_token ja sähköpostin näkyvyys API:ssa). |
+| Ohjelmisto on kehitetty Privacy by Design -periaatetta noudattaen | ⚠️ Osittain | Alun perin tyhjä, nyt luotu uusi sisältö privacypolicyn, terms of service ja cookiepolicyn kautta. Suojaus puutteellinen user_tokenien ja sähköpostien osalta. |
 
 
 
@@ -91,3 +93,4 @@ Kuva 9. Tuntiperusteinen varausjärjestelmä.
 <img width="614" height="588" alt="image" src="https://github.com/user-attachments/assets/332aea63-927f-44ef-b4af-b436ea1f7e78" />
 
 Kuva 10. Ei voi luoda nuorempaa kuin 15v käyttäjän.
+
