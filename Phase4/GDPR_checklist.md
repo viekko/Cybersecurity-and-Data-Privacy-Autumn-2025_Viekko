@@ -38,7 +38,7 @@ mikä muodostaa vakavan tietosuojariskin.
 | Ylläpitäjä voi lisätä, poistaa ja muokata resursseja ja varauksia | ❌ Ei | Testauksen perusteella kokeilu ei onnistunut. (Kuva 2) |
 | Ylläpitäjä voi poistaa varaajan | ❌ Ei | Testauksen perusteella ylläpitäjä ei pysty poistamaan käyttäjiä. (Kuva 2) |
 | Varaaja voi varata resurssin, jos on vähintään 15-vuotias | ❌ Ei | Alle 15-vuotiaat eivät voi rekisteröityä palveluun, joten teknisesti rajoitus toteutuu, mutta ei varausprosessin kautta. (Kuva 4) |
-| Resursseja voi varata tuntiperusteisesti | ✅ Kyllä | Varausjärjestelmä tukee tuntivarausta. |
+| Resursseja voi varata tuntiperusteisesti | ✅ Kyllä | Varausjärjestelmä tukee tuntivarausta. (Kuva 9) |
 | Varaustietojen näkyminen ilman kirjautumista ei paljasta varaajan henkilöllisyyttä | ✅ Kyllä | Julkinen näkymä näyttää vain varatut resurssit ilman henkilötietoja. (Kuva 3) |
 | Asiakas vaatii järjestelmän GDPR-yhteensopivuutta | ⚠️ Osittain | Checklist tehty arviointia varten, mutta järjestelmässä havaittiin puutteita (user_token ja sähköpostin näkyvyys API:ssa). |
 | Ohjelmisto on kehitetty Privacy by Design -periaatetta noudattaen | ⚠️ Osittain | Alun perin tyhjä, nyt luotu uusi sisältö privacypolicyn, terms of service ja cookiepolicyn kautta. Suojaus puutteellinen user_tokenien ja sähköpostien osalta. |
@@ -93,4 +93,5 @@ Kuva 9. Tuntiperusteinen varausjärjestelmä.
 <img width="614" height="588" alt="image" src="https://github.com/user-attachments/assets/332aea63-927f-44ef-b4af-b436ea1f7e78" />
 
 Kuva 10. Ei voi luoda nuorempaa kuin 15v käyttäjän.
+
 
