@@ -4,7 +4,7 @@
 |--------------|--------|---------|
 | **Lainmukaisuus, kohtuullisuus ja läpinäkyvyys** | ❌ Ei | Vaikka tietosuojaseloste on saatavilla, henkilötietoja (sähköpostiosoite ja user_token) paljastuu käyttöliittymässä ja API-rajapinnoissa ilman asianmukaista pääsynrajoitusta. Tämä rikkoo GDPR 5(1)(a). |
 | **Käyttötarkoitussidonnaisuus** | ⚠️ Osittain | Henkilötietoja kerätään varausjärjestelmän toteuttamiseksi, mutta user_tokenien ja käyttäjätunnusten näkyminen API:ssa ylittää alkuperäisen käyttötarkoituksen. |
-| **Tietojen minimointi** | ❌ Ei | Sähköpostiosoite, syntymäaika ja autentikointiin liittyvä user_token ovat nähtävissä tarpeettomasti. Varaajan identiteetti näkyy varausnäkymässä vastoin vaatimusta anonymiteetistä (GDPR 5(1)(c)). |
+| **Tietojen minimointi** | ❌ Ei | Sähköpostiosoite, syntymäaika ja autentikointiin liittyvä user_token ovat nähtävissä tarpeettomasti. Varaajan identiteetti näkyy varausnäkymässä vastoin vaatimusta anonymiteetistä (GDPR 5(1)(c)). Muuten aika vähän tietoja kerätään. |
 | **Tietojen paikkansapitävyys** | ⚠️ Osittain | Käyttäjä syöttää tiedot itse, mutta järjestelmä ei tarjoa keinoa tietojen tarkistamiseen tai korjaamiseen. |
 | **Säilytyksen rajoittaminen** | ⚠️ Osittain | Tietoja säilytetään niin kauan kuin käyttäjätili on olemassa, mutta erillistä säilytysaikapolitiikkaa passiivisille tileille ei ole määritelty. |
 | **Eheys ja luottamuksellisuus** | ❌ Ei | User_tokenit ja muut henkilötiedot näkyvät salaamattomina tietokannassa ja API-rajapinnassa. Vaikka salasanat on hashattu, tämä ei täytä GDPR 32 artiklan vaatimuksia. |
@@ -12,8 +12,8 @@
 | **Privacy by Design -periaate** | ❌ Ei | Järjestelmä ei oletusarvoisesti suojaa henkilötietoja, vaan altistaa ne näkyville API-rajapinnoissa ja käyttöliittymässä. Tämä rikkoo GDPR 25 artiklaa. |
 | **Oikeus tarkastaa tiedot** | ❌ Ei | Käyttäjällä ei ole keinoa tarkastella kaikkia itseään koskevia tietoja järjestelmässä. |
 | **Oikeus tietojen oikaisuun** | ❌ Ei | Käyttäjä ei voi itse muokata omia henkilötietojaan. |
-| **Oikeus tietojen poistoon** | ⚠️ Osittain | Vain ylläpitäjä voi poistaa käyttäjän, eikä käyttäjällä ole itsenäistä oikeutta pyytää poistoa järjestelmän kautta. |
-| **Oikeus saada tietoa** | ⚠️ Osittain | Tietosuojaseloste on saatavilla, mutta se ei kata kaikkia todellisia tietojen käsittelykäytäntöjä (esim. tokenit, API-näkyvyys). |
+| **Oikeus tietojen poistoon** | ❌ Ei | Ylläpitäjäkään ei voi poistaa käyttäjiä, eikä käyttäjällä ole itsenäistä oikeutta pyytää poistoa järjestelmän kautta. |
+| **Oikeus saada tietoa** | ❌ Ei | Tietosuojaseloste on tyhjä eikä kata tokenit, API-näkyvyys. |
 | **Suostumus vaaditaan** | ⚠️ Osittain | Käsittely perustuu sopimukseen, mutta evästeiden käyttöön ei ole erillistä suostumusmekanismia. |
 | **Evästekäytäntö saatavilla** | ⚠️ Osittain | Käytössä on vain istuntoevästeitä, mutta evästeiden käytöstä ei ole toteutettu erillistä hyväksyntä- tai hallintamekanismia. |
 | **Tietojen luovutus kolmansille osapuolille** | ✔️ Kyllä | Tietoja ei jaeta kolmansille osapuolille. |
@@ -93,5 +93,6 @@ Kuva 9. Tuntiperusteinen varausjärjestelmä.
 <img width="614" height="588" alt="image" src="https://github.com/user-attachments/assets/332aea63-927f-44ef-b4af-b436ea1f7e78" />
 
 Kuva 10. Ei voi luoda nuorempaa kuin 15v käyttäjän.
+
 
 
