@@ -82,3 +82,12 @@ Kuva 7. Tyhjä Cookiepolicy.
 
 Kuva 8. Tyhjä Privacy policy.
 
+
+<img width="721" height="628" alt="image" src="https://github.com/user-attachments/assets/56aae02e-ff96-4bee-b980-11d74050d3a8" />
+
+Kuva 9. Tuntiperusteinen varausjärjestelmä.
+
+
+<img width="614" height="588" alt="image" src="https://github.com/user-attachments/assets/332aea63-927f-44ef-b4af-b436ea1f7e78" />
+
+Kuva 10. Ei voi luoda nuorempaa kuin 15v käyttäjän.
