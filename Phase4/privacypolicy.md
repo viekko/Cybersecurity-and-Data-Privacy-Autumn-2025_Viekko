@@ -1,44 +1,62 @@
 # Tietosuojaseloste
 
 ## 1. Rekisterinpitäjä
-Tätä varausjärjestelmää ylläpitää Example Company Oy.  
+Varausjärjestelmää ylläpitää Example Company Oy.  
 Sähköposti: privacy@example.com
 
 ## 2. Kerättävät henkilötiedot
-Järjestelmä kerää seuraavia henkilötietoja:
-- Sähköpostiosoite
-- Ikä
+Järjestelmä käsittelee seuraavia henkilötietoja:
+
+- Sähköpostiosoite (käyttäjätunnus)
+- Syntymäaika (ikärajan valvontaa varten)
 - Käyttäjärooli (varaaja tai ylläpitäjä)
 - Varaustiedot
+- Käyttäjätilin luontiaika
+- Autentikointiin liittyvät tekniset tunnisteet (esim. user token)
 
 ## 3. Henkilötietojen käsittelyn tarkoitus
-Henkilötietoja käsitellään:
-- Käyttäjätilien luomiseksi ja hallinnoimiseksi
-- Varausten tekemiseksi ja hallinnoimiseksi
-- Järjestelmän toiminnan varmistamiseksi
+Henkilötietoja käsitellään seuraaviin tarkoituksiin:
+
+- Käyttäjätilien luominen ja hallinnointi
+- Resurssien varaaminen ja varausten hallinta
+- Ikärajan (vähintään 15 vuotta) valvonta
+- Järjestelmän toiminnan ja turvallisuuden varmistaminen
 
 ## 4. Käsittelyn oikeusperuste
-Henkilötietojen käsittelyn oikeusperuste on sopimus  
-(GDPR 6 artikla 1(b)).
+Henkilötietojen käsittely perustuu sopimukseen rekisteröidyn ja
+rekisterinpitäjän välillä (GDPR 6 artikla 1(b)).
 
 ## 5. Tietojen säilytysaika
-Henkilötietoja säilytetään niin kauan kuin käyttäjätili on olemassa tai palvelun tarjoaminen sitä edellyttää.
+Henkilötietoja säilytetään niin kauan kuin käyttäjätili on aktiivinen
+tai kuin palvelun tarjoaminen sitä edellyttää.
+Passiivisten käyttäjätilien poistamiseen ei ole toistaiseksi määritelty
+automaattista aikarajaa.
 
 ## 6. Tietojen luovutus
 Henkilötietoja ei luovuteta kolmansille osapuolille.
 
 ## 7. Rekisteröidyn oikeudet
-Käyttäjällä on oikeus:
-- Tarkastaa itseään koskevat tiedot
-- Pyytää virheellisten tietojen oikaisua
-- Pyytää tietojen poistamista
-- Vastustaa lainvastaista käsittelyä
+Rekisteröidyllä on GDPR:n mukaiset oikeudet:
 
-Pyynnöt voi lähettää rekisterinpitäjälle.
+- Oikeus tarkastaa itseään koskevat tiedot
+- Oikeus pyytää virheellisten tietojen oikaisua
+- Oikeus pyytää tietojen poistamista
+- Oikeus vastustaa lainvastaista henkilötietojen käsittelyä
+- Oikeus tehdä valitus valvontaviranomaiselle
+
+Oikeuksien käyttämistä koskevat pyynnöt tulee lähettää
+rekisterinpitäjälle sähköpostitse.
 
 ## 8. Tietoturva
-Henkilötietojen suojaamiseksi käytetään asianmukaisia teknisiä ja organisatorisia toimenpiteitä.
+Henkilötietojen suojaamiseksi käytetään teknisiä ja organisatorisia
+toimenpiteitä. Käytössä olevat suojausmekanismit eivät kuitenkaan
+kaikilta osin estä henkilötietojen näkyvyyttä järjestelmän sisäisissä
+rajapinnoissa.
 
-## 9. Muutokset tietosuojaselosteeseen
-Tietosuojaselostetta voidaan päivittää tarvittaessa.
+## 9. Evästeet
+Järjestelmä käyttää ainoastaan palvelun toiminnan kannalta välttämättömiä
+istuntoevästeitä. Tarkempi kuvaus evästeistä löytyy evästekäytännöstä.
 
+## 10. Muutokset tietosuojaselosteeseen
+Tietosuojaselostetta voidaan päivittää tarvittaessa. Ajantasainen versio
+on aina saatavilla järjestelmässä.
