@@ -30,7 +30,7 @@ user_tokenit ovat nähtävissä API-rajapintojen kautta ilman riittävää pää
 mikä muodostaa vakavan tietosuojariskin.
 
 
-| GDPR-vaatimus | Täyttyy | Huomiot / Testaustulos |
+| Muita vaatimuksia | Täyttyy | Huomiot / Testaustulos |
 |---------------|---------|-----------------------|
 | Järjestelmä on käytettävissä verkkoselaimen kautta | ✅ Kyllä | Testattu selainkäytöllä, toimii kuten odotettu. |
 | Käyttäjät voivat rekisteröityä ja kirjautua järjestelmään | ✅ Kyllä | Rekisteröinti ja kirjautuminen toimivat. |
@@ -93,6 +93,7 @@ Kuva 9. Tuntiperusteinen varausjärjestelmä.
 <img width="614" height="588" alt="image" src="https://github.com/user-attachments/assets/332aea63-927f-44ef-b4af-b436ea1f7e78" />
 
 Kuva 10. Ei voi luoda nuorempaa kuin 15v käyttäjän.
+
 
 
 
