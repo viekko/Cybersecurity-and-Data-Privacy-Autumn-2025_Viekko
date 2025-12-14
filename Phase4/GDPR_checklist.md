@@ -56,5 +56,7 @@ Kuva 4. Register kohtaa kysyy käyttäjää hyväksymään palvelun käyttöehdo
 Kuva 5. Tyhjä Terms of Service. Eli käyttäjä ei tiedä todellisia ehtoja jos haluaa.
 
 
+<img width="588" height="462" alt="image" src="https://github.com/user-attachments/assets/30b4698c-7783-4ef5-bdfb-4bb1c7ce0257" />
 
+Kuva 6. Accountin tiedot. --> Ei voi poistaa sieltä käyttäjää edes vaikka kyseessä admin.
 
