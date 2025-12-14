@@ -30,6 +30,18 @@ user_tokenit ovat nähtävissä API-rajapintojen kautta ilman riittävää pää
 mikä muodostaa vakavan tietosuojariskin.
 
 
+1. The system is accessed via a web browser. KYLLÄ
+2. Users can register and, after registration, log in to the system. KYLLÄ
+3. A registered and logged-in user acts as either a resource reserver or an administrator. KYLLÄ
+4. The administrator can add, remove, and modify resources and reservations. EI --> EI ONNISTUT KOKEILULLA.
+5. The administrator can delete the reserver. EI --> EI ONNISTUT KOKEILULLA.
+6. A reserver can book a resource if they are over 15 years old. KYLLÄ --> EI VOI KIRJAUTUA REKISTERÖITYÄ PALVELUUN ALLE 15V.
+7. Resources can be booked on an hourly basis. KYLLÄ
+8. The booking system displays booked resources without requiring login, but does not show the reserver's identity KYLLÄ (KUVA 3)
+9. The client, your company, requires that the system complies with GDPR regulations. OSITTAIN.
+10. The system provider has stated that the software is developed following the Privacy by Design (PbD) principle. ALUNPERIN TYHJÄT --> NYT LUOTU UUDET.
+
+
 
 <img width="1919" height="173" alt="image" src="https://github.com/user-attachments/assets/1ddb63d7-0191-405e-b3ec-0849018b0afc" />
 
@@ -69,3 +81,4 @@ Kuva 7. Tyhjä Cookiepolicy.
 <img width="1822" height="1391" alt="image" src="https://github.com/user-attachments/assets/81fa5586-9a06-42a3-9a33-f4adc09fde76" />
 
 Kuva 8. Tyhjä Privacy policy.
+
