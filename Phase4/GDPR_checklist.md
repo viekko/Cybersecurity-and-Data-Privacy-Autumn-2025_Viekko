@@ -60,3 +60,12 @@ Kuva 5. Tyhjä Terms of Service. Eli käyttäjä ei tiedä todellisia ehtoja jos
 
 Kuva 6. Accountin tiedot. --> Ei voi poistaa sieltä käyttäjää edes vaikka kyseessä admin.
 
+
+<img width="1516" height="1420" alt="image" src="https://github.com/user-attachments/assets/145fa151-880a-46bb-87f6-7b71d6cf04b9" />
+
+Kuva 7. Tyhjä Cookiepolicy.
+
+
+<img width="1822" height="1391" alt="image" src="https://github.com/user-attachments/assets/81fa5586-9a06-42a3-9a33-f4adc09fde76" />
+
+Kuva 8. Tyhjä Privacy policy.
