@@ -30,7 +30,7 @@ Henkilötietoja käsitellään seuraaviin tarkoituksiin:
 - Ikärajan (vähintään 15 vuotta) valvonta  
 - Järjestelmän toiminnan ja turvallisuuden varmistaminen  
 
-Henkilötietoja käsitellään vain tarpeellisessa laajuudessa. API-rajapintojen kautta käyttäjä näkee vain omat tietonsa.
+Henkilötietoja käsitellään vain tarpeellisessa laajuudessa.
 
 ---
 
