@@ -112,29 +112,134 @@ Mitä opin
 Opin konkreettisesti, kuinka vaarallista on käyttää heikkoja tai yleisiä salasanoja sekä vanhentuneita hash-algoritmeja kuten MD5:tä. Lisäksi ymmärsin, miksi hyökkääjälle pääsy salasana-hasheihin on erittäin vakava tietoturvariski ja miksi modernit hash-algoritmit (bcrypt, Argon2) ja pitkät salasanat ovat välttämättömiä.
 
 
-## Vaihe 3 – Tietoturva ja parannukset
+## Phase 3 – Authorization & Access Control Testing
 
-Kolmannessa vaiheessa keskityin järjestelmän parantamiseen ja tietoturvan huomioimiseen erityisesti PortSwigger-labratehtävistä opittujen asioiden pohjalta.
+Phase 3 -vaiheessa keskityin booking / reservation system -sovelluksen käyttöoikeuksien ja roolipohjaisen pääsynhallinnan (authorization & access control) testaamiseen. Testaus tehtiin manuaalisesti eri käyttäjärooleilla: Guest (ei kirjautunut), Reserver ja Administrator. Tavoitteena oli selvittää, pääsevätkö käyttäjät vain niihin toimintoihin ja tietoihin, joihin heidän roolinsa perusteella tulisi olla oikeus.
 
-**Mikä toimi:** Tietoturva-ajattelun soveltaminen paransi järjestelmän luotettavuutta.
+Testaus perustui konkreettisiin URL-kokeiluihin, selaimen DevTools-työkaluihin sekä API-endpointtien manuaaliseen testaamiseen.
 
-**Mikä ei toiminut:** Osa tietoturvaratkaisuista oli vaikeampi toteuttaa kuin aluksi ajattelin.
+Mitä testattiin
 
-**Eniten aikaa vei:** Teoreettisten tietoturvakäsitteiden yhdistäminen käytännön toteutukseen.
+UI-sivut (reititys ja näkymät)
 
-**Mitä opin:** Tietoturva on huomattavasti helpompi toteuttaa, kun se huomioidaan jo suunnitteluvaiheessa.
+REST API -endpointit (GET, POST, PUT, DELETE)
 
-## Vaihe 4 – Viimeistely ja dokumentointi
+Roolien välinen eristys
 
-Viimeisessä vaiheessa siivosin koodia, testasin järjestelmää ja dokumentoin projektin GitHubiin.
+Virheellisten HTTP-statuskoodien käyttö
 
-**Mikä toimi:** Dokumentointi auttoi selkeyttämään, mitä projektissa tehtiin ja miksi.
+IDOR- ja tietovuotoriskit
 
-**Mikä ei toiminut:** Ajanhallinta projektin loppuvaiheessa oli haastavaa.
+Keskeiset löydökset
 
-**Eniten aikaa vei:** Selkeän dokumentaation kirjoittaminen ja aiemman työn läpikäynti.
+Testauksessa havaittiin useita vakavia puutteita käyttöoikeusvalvonnassa:
 
-**Mitä opin:** Hyvä dokumentaatio on olennainen osa teknistä projektia.
+Guest- ja Reserver-käyttäjät pystyivät näkemään /api/users-endpointin, mikä on merkittävä GDPR- ja tietovuotoriski.
+
+Reserver-rooli pystyi näkemään muiden käyttäjien varauksia tietyissä tilanteissa (/api/reservations ja /api/reservations/{id}), mikä viittaa IDOR-haavoittuvuuteen.
+
+Admin-käyttöliittymä ei ollut käytettävissä lainkaan, sillä admin-reitit palauttivat virheen “Not Found” jopa admin-käyttäjälle.
+
+Useat sivut palauttivat 404 Not Found, vaikka oikeampi vastaus olisi ollut 401 Unauthorized tai 403 Forbidden, mikä vaikeuttaa virheiden tunnistamista ja heikentää sovelluksen selkeyttä.
+
+Mikä toimi
+
+Guest ei päässyt varausnäkymiin tai admin-endpointeihin.
+
+Reserver ei päässyt admin-API-endpointeihin.
+
+Backend esti suurimman osan luvattomista POST/PUT/DELETE-pyynnöistä, mikä on hyvä merkki perusroolisuojauksesta.
+
+Mikä ei toiminut
+
+GET-pyyntöjen roolirajoitukset olivat puutteellisia, mikä johti tietovuotoihin.
+
+API-käyttäytyminen oli epäjohdonmukaista: välillä palautui tyhjiä listoja, välillä arkaluonteista dataa.
+
+Admin UI:n puuttuminen esti täysipainoisen järjestelmänhallinnan testaamisen.
+
+Eniten aikaa vei
+
+Epäjohdonmaisen API-käyttäytymisen tulkinta sekä sen selvittäminen, johtuivatko ongelmat roolivirheistä, puuttuvista reiteistä vai keskeneräisestä toteutuksesta.
+
+Mitä opin
+
+Opin, että autorisointi on yksi web-sovellusten kriittisimmistä tietoturva-alueista, ja pienetkin virheet voivat johtaa vakaviin tietovuotoihin. Lisäksi ymmärsin, että käyttöoikeudet tulee validoida jokaisessa endpointissa, ei vain käyttöliittymän tasolla. Oikeiden HTTP-statuskoodien käyttö ja yhtenäinen autorisointikerros ovat keskeisiä turvallisen ja selkeän sovelluksen rakentamisessa.
+
+
+## Phase 4 – GDPR & Privacy Compliance
+
+Phase 4 -vaiheessa keskityin booking / reservation system -järjestelmän GDPR-yhteensopivuuden arviointiin ja tietosuojan parantamiseen. Työ toteutettiin GDPR-tarkistuslistan avulla, ja siinä analysoitiin järjestelmän henkilötietojen käsittelyä, näkyvyyttä, suojausta sekä rekisteröidyn oikeuksien toteutumista. Lisäksi täydensin järjestelmää luomalla Privacy Policy-, Cookie Policy- ja Terms of Service -sivut, jotka olivat alun perin puutteellisia tai tyhjiä.
+
+Mitä testattiin ja arvioitiin
+
+Henkilötietojen näkyvyys käyttöliittymässä ja API-rajapinnoissa
+
+GDPR:n perusperiaatteet (artikla 5)
+
+Käsittelyn oikeusperuste (artikla 6)
+
+Tietoturva ja eheys (artikla 32)
+
+Privacy by Design -periaate (artikla 25)
+
+Rekisteröidyn oikeudet (artiklat 12–23)
+
+Evästeiden ja tietosuojaselosteiden olemassaolo ja sisältö
+
+Keskeiset löydökset
+
+GDPR-tarkistuslistan perusteella järjestelmä on vain osittain GDPR-yhteensopiva. Merkittävimmät puutteet liittyvät henkilötietojen suojaamiseen ja näkyvyyteen:
+
+Sähköpostiosoitteet, syntymäajat ja autentikointiin liittyvät user_tokenit näkyvät API-rajapinnoissa ilman riittävää pääsynrajoitusta, mikä muodostaa vakavan GDPR- ja tietovuotoriskin.
+
+User_tokenit ja muut henkilötiedot ovat nähtävissä salaamattomina tietokannassa ja API:ssa, vaikka salasanat onkin hashattu.
+
+Järjestelmä ei noudata Privacy by Design -periaatetta, sillä henkilötiedot ovat oletusarvoisesti näkyvissä.
+
+Rekisteröidyn oikeudet (tietojen tarkastus, oikaisu ja poisto) eivät toteudu teknisesti, eikä edes ylläpitäjä pysty poistamaan käyttäjiä järjestelmästä.
+
+Tietosuojaseloste, evästekäytäntö ja käyttöehdot olivat aluksi tyhjiä tai puutteellisia, jolloin käyttäjä ei saanut riittävästi tietoa henkilötietojen käsittelystä.
+
+Mikä toimi
+
+Järjestelmä kerää suhteellisen vähän henkilötietoja.
+
+Julkinen varausnäkymä ei paljasta varaajan henkilöllisyyttä.
+
+Alle 15-vuotiaat eivät voi rekisteröityä palveluun.
+
+Resurssien tuntiperusteinen varaus toimii teknisesti oikein.
+
+Tehdyt parannukset
+
+Phase 4:n aikana loin ja lisäsin järjestelmään:
+
+Privacy Policy – kuvaamaan henkilötietojen käsittelyä
+
+Cookie Policy – dokumentoimaan istuntoevästeiden käytön
+
+Terms of Service – määrittelemään palvelun käyttöehdot
+
+Nämä lisäykset paransivat järjestelmän läpinäkyvyyttä ja vastasivat osittain GDPR:n tiedonantovelvoitteisiin, mutta tekniset suojauspuutteet jäivät edelleen ratkaisematta.
+
+Mikä ei toiminut
+
+Henkilötietojen näkyvyys API-rajapinnoissa ei ole riittävästi rajattu.
+
+Käyttäjien tietojen poistaminen tai muokkaaminen ei ole mahdollista.
+
+Evästeiden käyttöön ei ole toteutettu varsinaista suostumusmekanismia.
+
+Admin-käyttöliittymä ei tue GDPR-vaatimuksia (esim. käyttäjien hallinta).
+
+Eniten aikaa vei
+
+GDPR-vaatimusten tulkitseminen käytännön tekniseen toteutukseen sekä sen arviointi, mitkä puutteet ovat lainsäädännöllisesti kriittisimpiä.
+
+Mitä opin
+
+Opin, että GDPR-yhteensopivuus ei ole vain dokumentaatiota, vaan se vaatii myös teknisiä ratkaisuja, kuten pääsynhallintaa, tietojen minimointia ja turvallista API-suunnittelua. Lisäksi ymmärsin, kuinka tärkeää on huomioida Privacy by Design jo järjestelmän alkuvaiheessa, sillä myöhemmät korjaukset ovat huomattavasti työläämpiä ja riskialttiimpia.
 
 ---
 
