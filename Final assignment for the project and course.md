@@ -45,29 +45,72 @@ Nämä labrat kattoivat laajasti yleisimpiä web-sovellusten haavoittuvuuksia ja
 Projekti jaettiin useaan vaiheeseen (Phase 1–4), jotka on dokumentoitu GitHub-repositoriossani:
 [https://github.com/viekko/Cybersecurity-and-Data-Privacy-Autumn-2025_Viekko](https://github.com/viekko/Cybersecurity-and-Data-Privacy-Autumn-2025_Viekko)
 
-## Vaihe 1 – Suunnittelu ja alustus
+## Phase 1 – Docker & ZAP Security Testing
 
-Ensimmäisessä vaiheessa keskityin booking system -järjestelmän vaatimusten ymmärtämiseen ja kehitysympäristön pystyttämiseen. Tähän kuului järjestelmän rakenteeseen tutustuminen sekä päätösten tekeminen käyttäjistä, kirjautumisesta ja varaustoiminnallisuuksista.
+Phase 1 -vaiheessa keskityin booking system -sovelluksen tietoturvan testaamiseen Docker-pohjaisessa testausympäristössä hyödyntäen OWASP ZAP -työkalua. Testauksen tavoitteena oli tunnistaa kriittiset haavoittuvuudet erityisesti rekisteröinti-, autentikointi- ja käyttöoikeusmekanismeissa. Testaus toteutettiin white box -lähestymistavalla, jossa sovelluksen toiminta ja rakenne olivat ennalta tuttuja.
 
-**Mikä toimi:** Alustaminen sujui hyvin ja auttoi hahmottamaan projektin laajuutta.
+Mikä toimi:
+ZAP-skannaus ja manuaalinen testaus paljastivat tehokkaasti vakavia haavoittuvuuksia, kuten SQL Injectionin, Path Traversal -ongelman sekä sen, että salasanat oli alun perin tallennettu selkokielisinä. Näiden ongelmien korjaaminen onnistui, ja korjaukset pystyttiin myös verifioimaan uudelleentestaamalla.
 
-**Mikä ei toiminut:** Osa suunnitteluratkaisuista jouduttiin muuttamaan myöhemmissä vaiheissa.
+Mikä ei toiminut:
+Kaikkia havaittuja haavoittuvuuksia ei saatu korjattua tässä vaiheessa. Anti-CSRF-tokenit puuttuivat edelleen lomakkeista, ja Content Security Policy (CSP) jäi osittain tai kokonaan toteuttamatta aikataulusyistä.
 
-**Eniten aikaa vei:** Järjestelmän eri osien välisen logiikan ymmärtäminen.
+Eniten aikaa vei:
+Haavoittuvuuksien syiden ymmärtäminen ja niiden yhdistäminen aiemmin PortSwigger-labratehtävissä opittuihin käsitteisiin vei eniten aikaa, erityisesti SQL Injectionin ja Path Traversal -ongelmien osalta.
 
-**Mitä opin:** Huolellinen suunnittelu on tärkeää, mutta toteutuksen aikana ratkaisut usein kehittyvät.
+Mitä opin:
+Opin, kuinka helposti vakavat tietoturvaongelmat voivat syntyä, jos turvallisuus jätetään huomiotta kehityksen alkuvaiheessa. Lisäksi ymmärsin paremmin, miten automaattiset työkalut kuten OWASP ZAP tukevat, mutta eivät korvaa, manuaalista testausta ja turvallista koodauskäytäntöä.
 
-## Vaihe 2 – Ydintoiminnallisuudet
+## Phase 2 – Password Cracking & Hash Analysis
 
-Tässä vaiheessa toteutin booking systemin keskeiset toiminnallisuudet, kuten käyttäjätoiminnot, varausten käsittelyn ja perusdatankäsittelyn.
+Phase 2 -vaiheessa keskityin salasanojen murtamiseen ja hashattujen salasanojen analysointiin käyttäen Kali Linux -työkaluja Docker-ympäristössä. Testauksen tavoitteena oli ymmärtää, kuinka heikosti valitut salasanat voidaan murtaa offline-hyökkäyksillä, jos hyökkääjä saa haltuunsa järjestelmän tietokannan tai salasana-hashit.
 
-**Mikä toimi:** Perustoiminnot saatiin toimimaan ja järjestelmästä tuli käyttökelpoinen.
+Testauksessa hyödynsin John the Ripper- ja Hashcat-työkaluja, ja kohteena olivat MD5-hashatut salasanat. Käytin sekä valmiita sanalistoja (rockyou.txt), omia sanalistoja että sääntöpohjaisia hyökkäyksiä (rule-based attacks).
 
-**Mikä ei toiminut:** Osa logiikasta sisälsi virheitä, jotka vaativat korjausta ja uudelleentoteutusta.
+Murretut salasanat
 
-**Eniten aikaa vei:** Virheiden etsintä ja eri käyttäjäpolkujen testaaminen.
+Seuraavat salasanat saatiin onnistuneesti murrettua:
 
-**Mitä opin:** Pienetkin logiikkavirheet voivat aiheuttaa merkittäviä ongelmia ilman riittävää testausta.
+carrots123 – murrettu John the Ripperillä käyttäen raw-MD5-formaattia
+
+donuts4life – murrettu John the Ripper dictionary attack -menetelmällä
+
+darkside42 – murrettu John the Ripper dictionary attack -menetelmällä
+
+iamironman – murrettu John the Ripper dictionary attack -menetelmällä
+
+chaos123! – murrettu Hashcatilla käyttäen rockyou.txt-sanalistaa ja dive.rule-sääntöjä
+
+iamvengeance – murrettu Hashcatilla rule-based attack -menetelmällä
+
+(Katso kuvat 2–4.)
+
+Käytetyt menetelmät
+
+Dictionary attack: Hyödynsi yleisiä salasanalistoja ja paljasti useita helposti arvattavia salasanoja.
+
+Rule-based attack: Sääntöjen avulla generoitiin variaatioita (numerot, erikoismerkit, kirjainkoot), mikä mahdollisti monimutkaisempien salasanojen murtamisen.
+
+Optimized kernel (-O): Paransi suorituskykyä, vaikka ei yksinään lisännyt murrettujen salasanojen määrää.
+
+Mask attack (teoreettinen): Tarkasteltiin maskihyökkäystä tehokkaana vaihtoehtona tilanteissa, joissa salasanamallit ovat ennakoitavia (esim. Word123!).
+
+Mikä toimi
+
+Yleiset ja ennakoitavat salasanat murtuivat nopeasti, erityisesti silloin kun ne perustuivat sanakirjasanoihin tai yksinkertaisiin variaatioihin. Hashcatin sääntöpohjaiset hyökkäykset osoittautuivat erityisen tehokkaiksi monimutkaisempien salasanojen kohdalla.
+
+Mikä ei toiminut
+
+Kaikkia hasheja ei saatu murrettua, vaikka käytössä oli useita sanalistoja, omia wordlistejä ja eri sääntökokoelmia. Tämä osoitti, että pidemmät ja vähemmän ennakoitavat salasanat kestävät merkittävästi paremmin offline-hyökkäyksiä.
+
+Eniten aikaa vei
+
+Komentojen optimointi, rule-tiedostojen polkujen korjaaminen sekä hyökkäysmenetelmien testaaminen ja vertaileminen veivät eniten aikaa.
+
+Mitä opin
+
+Opin konkreettisesti, kuinka vaarallista on käyttää heikkoja tai yleisiä salasanoja sekä vanhentuneita hash-algoritmeja kuten MD5:tä. Lisäksi ymmärsin, miksi hyökkääjälle pääsy salasana-hasheihin on erittäin vakava tietoturvariski ja miksi modernit hash-algoritmit (bcrypt, Argon2) ja pitkät salasanat ovat välttämättömiä.
+
 
 ## Vaihe 3 – Tietoturva ja parannukset
 
