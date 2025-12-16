@@ -72,6 +72,7 @@ Projekti toteutettiin **neljässä vaiheessa**, joista jokainen keskittyi eri os
 - CSRF-tokenit ja CSP puuttuivat edelleen → altistaa XSS-hyökkäyksille.  
 - Rekisteröintilomake salli alaikäisten käyttäjien luomisen.
 - Part 1 tietokanta kokonaan hashaamatta. Voi luoda useampia samoja käyttäjiä.
+- Tämä tehtävä onnistui aika kivuttomasti.
 
 **Mitä opin:**  
 - Tietokannan salaaminen aina tärkeää. Korostuu jos nettirajapinnassa suoraan kiinni (case Vastaamo).
@@ -106,6 +107,7 @@ Projekti toteutettiin **neljässä vaiheessa**, joista jokainen keskittyi eri os
 - Yleiset salasanat murtuivat nopeasti.  
 - Hashcatin sääntöpohjaiset hyökkäykset tehokkaita monimutkaisempia salasanoja vastaan.  
 - Kaikkia hasheja ei saatu murrettua → ei jaksanut odottaa Hashcatin ruksuttamista. Odottelin toistaiseksi ja oli mennyt vasta 3%.
+- Tämä tehtävä vei aika paljon aikaa. Sain nopeasti John the Ripperillä ja rockyou.txt:llä 4/5 salasanaa ja koitin Johnilla useita salasanalistoja ennen kuin vaihdoin Hashcatiin ja sain 2 salasanaa lisää, jonka jälkeen luovutin. Eli vei paljon aikaa.
 
 **Mitä opin:**  
 - Offline-hyökkäykset ovat tehokkaita, jos hashit vuotavat. Pitää salata aina tietokannat ja kaikki sensitiiviset tiedot mielellään.
@@ -124,7 +126,8 @@ Projekti toteutettiin **neljässä vaiheessa**, joista jokainen keskittyi eri os
 
 **Mitä toimi / ei toiminut:**  
 - Backend esti suurimman osan luvattomista POST/PUT/DELETE-pyynnöistä.  
-- GET-pääsynhallinta oli puutteellinen ja aiheutti tietovuotoja.  
+- GET-pääsynhallinta oli puutteellinen ja aiheutti tietovuotoja.
+- Vei aikaa tehdä eri URL kutsuja ja katsoa mitä applikaatio palauttaa. 
 
 **Mitä opin:**  
 - API kutsuilla saa hyvin esiin piilotettua dataa.
@@ -146,6 +149,7 @@ Projekti toteutettiin **neljässä vaiheessa**, joista jokainen keskittyi eri os
 **Mitä opin:**  
 - GDPR vaikuttaa suoraan sovelluksen rakenteeseen ja API-suunnitteluun. Sen noudattaminen on tärkeää.
 - Tietosuojan huomioiminen on nykyään todella tärkää.
+- Eniten vei aikaa tutustua GDPR eri kohtiin ja miettiä mihin puutteellinen applikaatio sopisi.
 
 ---
 
