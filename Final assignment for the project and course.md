@@ -1,306 +1,183 @@
-# PortSwigger
+PortSwigger – Suoritetut labrat
 
-## Suoritetut labrat
+(Kuvakaappaus Dashboardista liitetään dokumenttiin <span style="color:red">[KUVAVIITE]</span>)
 
-Alla on lista PortSwigger Web Security Academy -labratehtävistä, jotka suoritin tämän kurssin aikana. Kuvakaappaus Dashboard-näkymästä, joka näyttää suoritetut labrat, voidaan liittää erikseen tarvittaessa.
+Alla on lista PortSwigger Web Security Academy ‑labratehtävistä, jotka suoritin kurssin aikana. Labrat kattoivat keskeiset web-haavoittuvuudet ja antoivat käytännön kokemusta hyökkäysten toiminnasta ja niiden estämisestä.
 
-### SQL-injektiot
+🛡 SQL Injection
 
-* SQL injection vulnerability in WHERE clause allowing retrieval of hidden data
-* SQL injection vulnerability allowing login bypass
-* SQL injection attack, querying the database type and version on Oracle
+SQL injection vulnerability in WHERE clause allowing retrieval of hidden data
 
-### Autentikointi ja salasanapohjainen kirjautuminen
+SQL injection vulnerability allowing login bypass
 
-* Username enumeration via different responses
-* Username enumeration via subtly different responses
-* 2FA simple bypass
-* Password reset broken logic
+SQL injection attack, querying the database type and version on Oracle
 
-### Käyttöoikeus- ja pääsynhallinnan haavoittuvuudet
+🔑 Authentication & Passwords
 
-* User role can be modified in user profile
-* Unprotected admin functionality
-* Unprotected admin functionality with unpredictable URL
-* User role controlled by request parameter
-* User ID controlled by request parameter
-* User ID controlled by request parameter, with unpredictable user IDs
-* User ID controlled by request parameter with data leakage in redirect
-* User ID controlled by request parameter with password disclosure
-* Insecure direct object references (IDOR)
+Username enumeration via different responses
 
-### Cross-Site Scripting (XSS)
+Username enumeration via subtly different responses
 
-* Reflected XSS into HTML context with nothing encoded
-* Stored XSS into HTML context with nothing encoded
-* DOM XSS in document.write sink using source location.search
-* DOM XSS in innerHTML sink using source location.search
+2FA simple bypass
 
-Nämä labrat kattoivat laajasti yleisimpiä web-sovellusten haavoittuvuuksia ja antoivat käytännön kokemusta niiden hyödyntämisestä realistisissa ympäristöissä.
+Password reset broken logic
 
----
+🔐 Access Control & Authorization
 
-# Booking system -projekti
+User role can be modified in user profile
 
-Projekti jaettiin useaan vaiheeseen (Phase 1–4), jotka on dokumentoitu GitHub-repositoriossani:
-[https://github.com/viekko/Cybersecurity-and-Data-Privacy-Autumn-2025_Viekko](https://github.com/viekko/Cybersecurity-and-Data-Privacy-Autumn-2025_Viekko)
+Unprotected admin functionality
 
-## Phase 1 – Docker & ZAP Security Testing
+Unprotected admin functionality with unpredictable URL
 
-Tester: Veikko
-Test Environment & Dates: Docker, Linux, MySQL, Chrome, OWASP ZAP
-Start: 23.11.2025 11:00
-End: 23.11.2025 19:00
-Test Approach: White box testing
-Scope: Käyttäjätietokanta, kirjautumis- ja rekisteröintilomakkeet, roolinhallinta, HTTP-pyynnöt, palvelimen tiedostopolut
+User role controlled by request parameter
 
-Part 1 – Findings and Evidence
+User ID controlled by request parameter
 
-Purpose: Tunnistaa kriittiset haavoittuvuudet rekisteröinti-, autentikointi- ja käyttöoikeusprosesseissa sekä arvioida sovelluksen suojaustaso.
+User ID controlled by request parameter, with unpredictable user IDs
 
-ID	Severity	Finding	Description	Evidence
-F-01	🔴 High	Salaamattomat salasanat	Käyttäjätietokanta tallentaa salasanat selkokielisinä.	Kuva 1
-F-02	🔴 High	SQL Injection	Parametrien manipulointi (esim. AND 1=1 --) palauttaa piilotettua dataa.	Kuva 3
-F-03	🔴 High	Path Traversal	URL-manipulaatio (../) mahdollistaa tiedostojen luvun palvelimelta.	Kuva 4
-F-04	🟠 Medium	Puuttuvat CSRF-tokenit	HTML-lomakkeissa ei ole anti-CSRF-suojausta.	Kuva 6
-F-05	🟠 Medium	Puuttuva CSP	Sivulla ei ole Content Security Policy -asetuksia, altistaa XSS:lle.	Kuva 5
-F-06	🟡 Low	Duplicate accounts	Sama käyttäjä voidaan rekisteröidä useita kertoja.	Kuva 7
+User ID controlled by request parameter with data leakage in redirect
 
-Observations / Additional Notes:
+User ID controlled by request parameter with password disclosure
 
-Käyttäjät voivat rekisteröidä syntymäpäivän, joka mahdollistaa alle 15-vuotiaiden käyttäjien luomisen.
+Insecure direct object references (IDOR)
 
-Anti-CSRF tokenit puuttuvat edelleen rekisteröintilomakkeesta, mikä altistaa CSRF-hyökkäyksille.
+💻 Cross-Site Scripting (XSS)
 
-CSP puuttuu tai on liian löysä, XSS-hyökkäykset mahdollisia.
+Reflected XSS into HTML context with nothing encoded
 
-Images / Evidence:
+Stored XSS into HTML context with nothing encoded
 
-Kuva 1: Salaamattomat salasanat tietokannassa
+DOM XSS in document.write sink using source location.search
 
-Kuva 2: ZAP-skannauksella löydetyt haavoittuvuudet
+DOM XSS in innerHTML sink using source location.search
 
-Kuva 3: SQL Injection mahdollinen
+Booking System Project
 
-Kuva 4: Path Traversal mahdollinen
+Projekti toteutettiin neljässä vaiheessa, joista jokainen keskittyi eri osa-alueisiin web-sovelluksen tietoturvassa. Dokumentaatio löytyy GitHubista (linkki liitetään raporttiin).
 
-Kuva 5: CSP puuttuu
+Phase 1 – Docker & ZAP Security Testing
 
-Kuva 6: CSRF-tokenit puuttuvat
+Tavoite: Tunnistaa kriittiset haavoittuvuudet rekisteröinti-, autentikointi- ja käyttöoikeusprosesseissa.
 
-Kuva 7: Duplicate account -ilmoitus
+Testiympäristö: Docker, Linux, MySQL, Chrome, OWASP ZAP
+Menetelmä: White box
+Aika: 23.11.2025, klo 11:00–19:00
+Scope: Käyttäjätietokanta, kirjautuminen, rekisteröinti, roolinhallinta, HTTP-pyynnöt, palvelimen tiedostopolut
 
-Part 2 – Fixes & Current Status
+Keskeiset löydökset:
 
-Top 5 Findings – Status
+ID	Severity	Finding	Status
+F‑01	🔴 High	Salaamattomat salasanat	Fixed ✅
+F‑02	🔴 High	SQL Injection	Fixed ✅
+F‑03	🔴 High	Path Traversal	Fixed ✅
+F‑04	🟠 Medium	Puuttuvat CSRF‑tokenit	Not fixed ⚠
+F‑05	🟠 Medium	Puuttuva CSP	Not fixed ⚠
+F‑06	🟡 Low	Duplicate accounts	Not critical
 
-Finding	Status	Notes / Verification
-Salaamattomat salasanat	Fixed ✅	Salasanat hashattu (bcrypt/argon2). Tietokanta tarkistettu.
-SQL Injection	Fixed ✅	Parametrisoidut kyselyt estävät datavuodot. Testattu.
-Path Traversal	Fixed ✅	URL-manipulaatiot estetty. Testattu ../-poluilla.
-Puuttuvat CSRF-tokenit	Not Fixed ⚠	ZAP-skannaus havaitsee edelleen puuttuvan tokenin rekisteröintilomakkeessa.
-Puuttuva CSP	Not Fixed ⚠	HTTP-header tarkistettu; CSP puuttuu tai liian löysä.
+Mitä toimi / ei toiminut:
 
-Additional Notes:
+SQL Injection ja Path Traversal saatiin korjattua.
 
-CSRF (Cross-Site Request Forgery) riskit ovat edelleen olemassa erityisesti aktiivisilla istunnoilla ja ennakoitavilla URL/form-toiminnoilla.
+CSRF-tokenit ja CSP puuttuivat edelleen → altistaa XSS-hyökkäyksille.
 
-CSP puuttuminen mahdollistaa XSS-hyökkäykset. Testaus voidaan tehdä manuaalisesti skripteillä kuten <script>alert(1)</script>.
+Rekisteröintilomake salli alaikäisten käyttäjien luomisen.
 
-Duplicate account -ongelma ei ole kriittinen, mutta suosittelemme rajoittamaan rekisteröinnit uniikeilla tunnuksilla.
+Mitä opin:
 
-Summary – Phase 1
+Pienet puutteet voivat avata merkittäviä hyökkäysvektoreita.
 
-Phase 1 testauksessa havaittiin useita kriittisiä haavoittuvuuksia, jotka mahdollistivat tietomurrot ja väärinkäytöt. Salaamattomat salasanat, SQL Injection ja Path Traversal on korjattu. Puuttuvat CSRF-tokenit ja CSP ovat edelleen riskialttiita ja vaativat korjausta.
+ZAP automatisoi peruslöydökset hyvin, mutta manuaalinen testaus on välttämätöntä.
 
-## Phase 2 – Password Cracking & Hash Analysis
+Phase 2 – Password Cracking & Hash Analysis
 
-Tavoite:
-Testata heikkoja salasanoja ja analysoida hashattuja salasanoja käyttäen offline-hyökkäyksiä. Tavoitteena oli ymmärtää, kuinka helposti heikot tai yleiset salasanat voidaan murtaa, jos hyökkääjä saa haltuunsa hash-tiedoston.
-
-Test Environment:
-Docker, Kali Linux, John the Ripper, Hashcat
+Tavoite: Testata salasanojen vahvuutta ja analysoida hashattuja salasanoja offline-hyökkäyksillä.
 
 Menetelmät:
 
-Raw-MD5 cracking – John the Ripper tunnisti nopeasti heikot salasanat.
+John the Ripper (raw-MD5, sanakirjahyökkäykset)
 
-Dictionary attack – rockyou.txt -sanalistan avulla löydettiin useita yleisiä salasanoja.
+Hashcat (dictionary + rule-based attacks, dive.rule, best64.rule, optimized kernel)
 
-Rule-based attack – Hashcat sääntöpohjaiset hyökkäykset (dive.rule, best64.rule) generoivat variaatioita (numerot, erikoismerkit, kirjainkoot).
+Mask attack (ennakoidut salasanamallit)
 
-Optimized kernel (-O) – paransi hyökkäyksen suorituskykyä.
+Murretut salasanat:
 
-Mask attack (brute-force pattern) – tarkennettu brute-force hyökkäys ennakoitujen salasanamallien perusteella.
+Password	Tool / Method
+carrots123	John the Ripper, raw-MD5
+donuts4life	John the Ripper, dictionary
+darkside42	John the Ripper, dictionary
+iamironman	John the Ripper, dictionary
+chaos123!	Hashcat + dive.rule
+iamvengeance	Hashcat, rule-based
 
-Murretut salasanat – Summary Table
+Mitä toimi / ei toiminut:
 
-#	Password	Tool / Method	Status	Evidence
-1	carrots123	John the Ripper, raw-MD5	Cracked ✅	Picture 2
-2	donuts4life	John the Ripper, dictionary attack	Cracked ✅	Picture 2
-3	darkside42	John the Ripper, dictionary attack	Cracked ✅	Picture 3
-4	iamironman	John the Ripper, dictionary attack	Cracked ✅	Picture 3
-5	chaos123!	Hashcat, rockyou.txt + dive.rule	Cracked ✅	Picture 4
-6	iamvengeance	Hashcat, rule-based attack	Cracked ✅	Picture 4
+Yleiset salasanat murtuivat nopeasti.
 
-Observations / Additional Notes:
+Hashcatin sääntöpohjaiset hyökkäykset tehokkaita monimutkaisempia salasanoja vastaan.
 
-Useimmat yleiset ja ennakoitavat salasanat murtuivat nopeasti.
+Kaikkia hasheja ei saatu murrettua → vahvat, pitkät salasanat pitivät pintansa.
 
-Monimutkaisempien salasanojen kohdalla Hashcatin sääntöpohjaiset hyökkäykset olivat tehokkaampia.
+Mitä opin:
 
-Kaikkia hasheja ei saatu murrettua, mikä osoittaa pitkien ja satunnaisten salasanojen vahvuuden.
+Offline-hyökkäykset ovat tehokkaita, jos hashit vuotavat.
 
-Omien sanalistojen hyödyntäminen ja sääntöpohjaiset variaatiot laajensivat mahdollisia hyökkäysmahdollisuuksia.
+MD5 on täysin riittämätön – modernit hashit kuten bcrypt/Argon2 ovat välttämättömiä.
 
-Vinkkejä ja huomioita:
+Phase 3 – Authorization & Access Control Testing
 
-Dictionary vs. Non-dictionary attacks – Sanakirjahyökkäykset perustuvat valmiisiin listohin, brute-force yrittää kaikkia mahdollisia yhdistelmiä.
+Tavoite: Testata roolipohjaista pääsynhallintaa (Guest, Reserver, Admin).
 
-Hyödyt hashien saannista – Mahdollistaa offline-hyökkäyksen ilman järjestelmän havaitsemista; hyökkääjä voi kohdistaa tiettyihin käyttäjiin ja käyttää salasanoja useissa järjestelmissä.
+Keskeiset löydökset:
 
-Pitkät salasanat – Lisäävät eksponentiaalisesti avaruuden kokoa, vaikeuttaen brute-force ja sanakirjahyökkäyksiä.
+Guest ja Reserver näkivät arkaluonteista dataa API-endpointeista → puutteellinen access control.
 
-Opinnot:
+Reserver pystyi näkemään muiden varauksia → IDOR-haavoittuvuus.
 
-Heikot salasanat ja vanhentuneet hash-algoritmit (kuten MD5) ovat merkittävä riski.
+Admin UI ei ollut käytettävissä → hallintatoimintoja ei voitu testata.
 
-Offline-hyökkäykset mahdollistavat hyökkääjälle laajat mahdollisuudet, mikä korostaa vahvojen hashien (bcrypt/Argon2) ja pitkien, satunnaisten salasanojen merkitystä.
+HTTP-statuskoodit olivat epäjohdonmukaisia.
 
-Käytännön testaus opetti, miten erilaiset hyökkäystavat täydentävät toisiaan ja millaisia suorituskykyyn liittyviä optimointeja voidaan tehdä.
+Mitä toimi / ei toiminut:
 
+Backend esti suurimman osan luvattomista POST/PUT/DELETE-pyynnöistä.
 
-## Phase 3 – Authorization & Access Control Testing
+GET-pääsynhallinta oli puutteellinen ja aiheutti tietovuotoja.
 
-Phase 3 -vaiheessa keskityin booking / reservation system -sovelluksen käyttöoikeuksien ja roolipohjaisen pääsynhallinnan (authorization & access control) testaamiseen. Testaus tehtiin manuaalisesti eri käyttäjärooleilla: Guest (ei kirjautunut), Reserver ja Administrator. Tavoitteena oli selvittää, pääsevätkö käyttäjät vain niihin toimintoihin ja tietoihin, joihin heidän roolinsa perusteella tulisi olla oikeus.
+Mitä opin:
 
-Testaus perustui konkreettisiin URL-kokeiluihin, selaimen DevTools-työkaluihin sekä API-endpointtien manuaaliseen testaamiseen.
+Jokainen endpoint on validoitava roolin mukaan, ei vain kriittiset toiminnot.
 
-Mitä testattiin
+Selkeä virheenkäsittely on tärkeää, jotta haavoittuvuudet eivät jää piiloon.
 
-UI-sivut (reititys ja näkymät)
+Phase 4 – GDPR & Privacy Compliance
 
-REST API -endpointit (GET, POST, PUT, DELETE)
+Tavoite: Arvioida sovelluksen GDPR-yhteensopivuutta.
 
-Roolien välinen eristys
+Keskeiset löydökset:
 
-Virheellisten HTTP-statuskoodien käyttö
+Henkilötiedot näkyivät API:ssa ilman riittävää rajoitusta.
 
-IDOR- ja tietovuotoriskit
+Rekisteröidyn oikeuksia (tarkastus, oikaisu, poisto) ei toteutettu.
 
-Keskeiset löydökset
+Privacy Policy, Cookie Policy ja Terms of Service puuttuivat.
 
-Testauksessa havaittiin useita vakavia puutteita käyttöoikeusvalvonnassa:
+Parannukset:
 
-Guest- ja Reserver-käyttäjät pystyivät näkemään /api/users-endpointin, mikä on merkittävä GDPR- ja tietovuotoriski.
+Lisätty tarvittavat tietosuojadokumentit.
 
-Reserver-rooli pystyi näkemään muiden käyttäjien varauksia tietyissä tilanteissa (/api/reservations ja /api/reservations/{id}), mikä viittaa IDOR-haavoittuvuuteen.
+Aloitettu Privacy by Design -periaatteiden huomioiminen.
 
-Admin-käyttöliittymä ei ollut käytettävissä lainkaan, sillä admin-reitit palauttivat virheen “Not Found” jopa admin-käyttäjälle.
+Mitä opin:
 
-Useat sivut palauttivat 404 Not Found, vaikka oikeampi vastaus olisi ollut 401 Unauthorized tai 403 Forbidden, mikä vaikeuttaa virheiden tunnistamista ja heikentää sovelluksen selkeyttä.
+GDPR ei ole vain lakitekstiä – se vaikuttaa suoraan sovelluksen rakenteeseen ja API-suunnitteluun.
 
-Mikä toimi
+Tietosuojan huomioiminen alusta asti säästää aikaa ja vähentää riskejä.
 
-Guest ei päässyt varausnäkymiin tai admin-endpointeihin.
+📝 Reflektio
 
-Reserver ei päässyt admin-API-endpointeihin.
-
-Backend esti suurimman osan luvattomista POST/PUT/DELETE-pyynnöistä, mikä on hyvä merkki perusroolisuojauksesta.
-
-Mikä ei toiminut
-
-GET-pyyntöjen roolirajoitukset olivat puutteellisia, mikä johti tietovuotoihin.
-
-API-käyttäytyminen oli epäjohdonmukaista: välillä palautui tyhjiä listoja, välillä arkaluonteista dataa.
-
-Admin UI:n puuttuminen esti täysipainoisen järjestelmänhallinnan testaamisen.
-
-Eniten aikaa vei
-
-Epäjohdonmaisen API-käyttäytymisen tulkinta sekä sen selvittäminen, johtuivatko ongelmat roolivirheistä, puuttuvista reiteistä vai keskeneräisestä toteutuksesta.
-
-Mitä opin
-
-Opin, että autorisointi on yksi web-sovellusten kriittisimmistä tietoturva-alueista, ja pienetkin virheet voivat johtaa vakaviin tietovuotoihin. Lisäksi ymmärsin, että käyttöoikeudet tulee validoida jokaisessa endpointissa, ei vain käyttöliittymän tasolla. Oikeiden HTTP-statuskoodien käyttö ja yhtenäinen autorisointikerros ovat keskeisiä turvallisen ja selkeän sovelluksen rakentamisessa.
-
-
-## Phase 4 – GDPR & Privacy Compliance
-
-Phase 4 -vaiheessa keskityin booking / reservation system -järjestelmän GDPR-yhteensopivuuden arviointiin ja tietosuojan parantamiseen. Työ toteutettiin GDPR-tarkistuslistan avulla, ja siinä analysoitiin järjestelmän henkilötietojen käsittelyä, näkyvyyttä, suojausta sekä rekisteröidyn oikeuksien toteutumista. Lisäksi täydensin järjestelmää luomalla Privacy Policy-, Cookie Policy- ja Terms of Service -sivut, jotka olivat alun perin puutteellisia tai tyhjiä.
-
-Mitä testattiin ja arvioitiin
-
-Henkilötietojen näkyvyys käyttöliittymässä ja API-rajapinnoissa
-
-GDPR:n perusperiaatteet (artikla 5)
-
-Käsittelyn oikeusperuste (artikla 6)
-
-Tietoturva ja eheys (artikla 32)
-
-Privacy by Design -periaate (artikla 25)
-
-Rekisteröidyn oikeudet (artiklat 12–23)
-
-Evästeiden ja tietosuojaselosteiden olemassaolo ja sisältö
-
-Keskeiset löydökset
-
-GDPR-tarkistuslistan perusteella järjestelmä on vain osittain GDPR-yhteensopiva. Merkittävimmät puutteet liittyvät henkilötietojen suojaamiseen ja näkyvyyteen:
-
-Sähköpostiosoitteet, syntymäajat ja autentikointiin liittyvät user_tokenit näkyvät API-rajapinnoissa ilman riittävää pääsynrajoitusta, mikä muodostaa vakavan GDPR- ja tietovuotoriskin.
-
-User_tokenit ja muut henkilötiedot ovat nähtävissä salaamattomina tietokannassa ja API:ssa, vaikka salasanat onkin hashattu.
-
-Järjestelmä ei noudata Privacy by Design -periaatetta, sillä henkilötiedot ovat oletusarvoisesti näkyvissä.
-
-Rekisteröidyn oikeudet (tietojen tarkastus, oikaisu ja poisto) eivät toteudu teknisesti, eikä edes ylläpitäjä pysty poistamaan käyttäjiä järjestelmästä.
-
-Tietosuojaseloste, evästekäytäntö ja käyttöehdot olivat aluksi tyhjiä tai puutteellisia, jolloin käyttäjä ei saanut riittävästi tietoa henkilötietojen käsittelystä.
-
-Mikä toimi
-
-Järjestelmä kerää suhteellisen vähän henkilötietoja.
-
-Julkinen varausnäkymä ei paljasta varaajan henkilöllisyyttä.
-
-Alle 15-vuotiaat eivät voi rekisteröityä palveluun.
-
-Resurssien tuntiperusteinen varaus toimii teknisesti oikein.
-
-Tehdyt parannukset
-
-Phase 4:n aikana loin ja lisäsin järjestelmään:
-
-Privacy Policy – kuvaamaan henkilötietojen käsittelyä
-
-Cookie Policy – dokumentoimaan istuntoevästeiden käytön
-
-Terms of Service – määrittelemään palvelun käyttöehdot
-
-Nämä lisäykset paransivat järjestelmän läpinäkyvyyttä ja vastasivat osittain GDPR:n tiedonantovelvoitteisiin, mutta tekniset suojauspuutteet jäivät edelleen ratkaisematta.
-
-Mikä ei toiminut
-
-Henkilötietojen näkyvyys API-rajapinnoissa ei ole riittävästi rajattu.
-
-Käyttäjien tietojen poistaminen tai muokkaaminen ei ole mahdollista.
-
-Evästeiden käyttöön ei ole toteutettu varsinaista suostumusmekanismia.
-
-Admin-käyttöliittymä ei tue GDPR-vaatimuksia (esim. käyttäjien hallinta).
-
-Eniten aikaa vei
-
-GDPR-vaatimusten tulkitseminen käytännön tekniseen toteutukseen sekä sen arviointi, mitkä puutteet ovat lainsäädännöllisesti kriittisimpiä.
-
-Mitä opin
-
-Opin, että GDPR-yhteensopivuus ei ole vain dokumentaatiota, vaan se vaatii myös teknisiä ratkaisuja, kuten pääsynhallintaa, tietojen minimointia ja turvallista API-suunnittelua. Lisäksi ymmärsin, kuinka tärkeää on huomioida Privacy by Design jo järjestelmän alkuvaiheessa, sillä myöhemmät korjaukset ovat huomattavasti työläämpiä ja riskialttiimpia.
-
----
-
-## Reflektio (50–100 sanaa)
-
-Tämän aiheen aikana opin paljon todellisista web-sovellusten tietoturvahaavoittuvuuksista ja siitä, kuinka pienetkin virheet voivat johtaa vakaviin tietoturvaongelmiin. PortSwigger-labrat tarjosivat käytännön kokemusta SQL-injektioista, autentikointivirheistä, käyttöoikeusongelmista ja XSS-haavoittuvuuksista. Booking system -projekti auttoi soveltamaan näitä oppeja käytännössä. Ymmärrän nyt paremmin hyökkääjän ajattelutapaa sekä sen, miksi turvallinen koodaus ja testaus ovat keskeisiä web-kehityksessä.
+Kurssi tarjosi kokonaisvaltaisen katsauksen web-sovellusten tietoturvaan.
+PortSwigger-labrat antoivat käytännön kokemusta SQL-injektioista, XSS-hyökkäyksistä ja käyttöoikeusongelmista.
+Booking System -projekti auttoi soveltamaan oppeja todellisessa sovelluksessa ja ymmärtämään, miten pienet virheet voivat johtaa vakaviin tietoturvariskeihin.
+Opin myös, kuinka tärkeää on yhdistää tekninen testaus, turvallinen koodaus ja tietosuojavaatimukset kokonaisuutena.
