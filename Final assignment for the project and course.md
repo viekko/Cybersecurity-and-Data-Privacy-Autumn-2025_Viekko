@@ -1,5 +1,4 @@
 # PortSwigger – Suoritetut labrat
-*(Kuvakaappaus Dashboardista liitetään dokumenttiin **<span style="color:red">[KUVAVIITE]</span>**)*
 
 Alla on lista PortSwigger Web Security Academy ‑labratehtävistä, jotka suoritin kurssin aikana. Labrat kattoivat keskeiset web-haavoittuvuudet ja antoivat käytännön kokemusta hyökkäysten toiminnasta ja niiden estämisestä.
 
@@ -33,6 +32,14 @@ Alla on lista PortSwigger Web Security Academy ‑labratehtävistä, jotka suori
 - DOM XSS in document.write sink using source location.search  
 - DOM XSS in innerHTML sink using source location.search  
 
+<img width="715" height="372" alt="image" src="https://github.com/user-attachments/assets/ca4224f7-7f15-4f28-8389-cf85850aa501" />
+<img width="588" height="321" alt="image" src="https://github.com/user-attachments/assets/cfe30062-d134-425c-8391-25da439eb4ae" />
+<img width="887" height="1126" alt="image" src="https://github.com/user-attachments/assets/6b423424-4813-4466-8464-8328c01e6008" />
+<img width="1004" height="576" alt="image" src="https://github.com/user-attachments/assets/030e33e5-3fbb-4a16-9123-3c2694df7fab" />
+
+Kuvasarja 1. Suorittamani Portswigger labit-
+
+
 ---
 
 # Booking System Project
@@ -40,7 +47,7 @@ Projekti toteutettiin **neljässä vaiheessa**, joista jokainen keskittyi eri os
 
 ---
 
-## Phase 1 – Docker & ZAP Security Testing
+## Phase 1 – Docker & ZAP Security Testing Part 1 & 2
 **Tavoite:** Tunnistaa kriittiset haavoittuvuudet rekisteröinti-, autentikointi- ja käyttöoikeusprosesseissa.  
 
 **Testiympäristö:** Docker, Linux, MySQL, Chrome, OWASP ZAP  
@@ -60,11 +67,15 @@ Projekti toteutettiin **neljässä vaiheessa**, joista jokainen keskittyi eri os
 | F‑06 | 🟡 Low     | Duplicate accounts          | Not critical   |
 
 **Mitä toimi / ei toiminut:**  
+- Tietokanta hashaus salasanoille korjattiin.
 - SQL Injection ja Path Traversal saatiin korjattua.  
 - CSRF-tokenit ja CSP puuttuivat edelleen → altistaa XSS-hyökkäyksille.  
-- Rekisteröintilomake salli alaikäisten käyttäjien luomisen.  
+- Rekisteröintilomake salli alaikäisten käyttäjien luomisen.
+- Part 1 tietokanta kokonaan hashaamatta. Voi luoda useampia samoja käyttäjiä.
 
 **Mitä opin:**  
+- Tietokannan salaaminen aina tärkeää. Korostuu jos nettirajapinnassa suoraan kiinni (case Vastaamo).
+- SQL injektio palauttaa piilotettua dataa.
 - Pienet puutteet voivat avata merkittäviä hyökkäysvektoreita.  
 - ZAP automatisoi peruslöydökset hyvin, mutta manuaalinen testaus on välttämätöntä.
 
@@ -86,16 +97,18 @@ Projekti toteutettiin **neljässä vaiheessa**, joista jokainen keskittyi eri os
 | donuts4life    | John the Ripper, dictionary        |
 | darkside42     | John the Ripper, dictionary        |
 | iamironman     | John the Ripper, dictionary        |
-| chaos123!      | Hashcat + dive.rule                 |
-| iamvengeance   | Hashcat, rule-based                |
+| chaos123!      | Hashcat                            |
+| iamvengeance   | Hashcat                            |
 
 **Mitä toimi / ei toiminut:**  
+- Hashcat hidas ja vaatii paljon laskentatehoa.
+- rockyou.txt hyvä salasana dictionary, mutta tarvii olla muita.
 - Yleiset salasanat murtuivat nopeasti.  
 - Hashcatin sääntöpohjaiset hyökkäykset tehokkaita monimutkaisempia salasanoja vastaan.  
-- Kaikkia hasheja ei saatu murrettua → vahvat, pitkät salasanat pitivät pintansa.  
+- Kaikkia hasheja ei saatu murrettua → ei jaksanut odottaa Hashcatin ruksuttamista. Odottelin toistaiseksi ja oli mennyt vasta 3%.
 
 **Mitä opin:**  
-- Offline-hyökkäykset ovat tehokkaita, jos hashit vuotavat.  
+- Offline-hyökkäykset ovat tehokkaita, jos hashit vuotavat. Pitää salata aina tietokannat ja kaikki sensitiiviset tiedot mielellään.
 - MD5 on täysin riittämätön – modernit hashit kuten bcrypt/Argon2 ovat välttämättömiä.
 
 ---
@@ -114,8 +127,8 @@ Projekti toteutettiin **neljässä vaiheessa**, joista jokainen keskittyi eri os
 - GET-pääsynhallinta oli puutteellinen ja aiheutti tietovuotoja.  
 
 **Mitä opin:**  
-- Jokainen endpoint on validoitava roolin mukaan, ei vain kriittiset toiminnot.  
-- Selkeä virheenkäsittely on tärkeää, jotta haavoittuvuudet eivät jää piiloon.
+- API kutsuilla saa hyvin esiin piilotettua dataa.
+- Haavoittuvuuksien huomioiminen ohjelmissa todella kriittistä.  
 
 ---
 
@@ -128,12 +141,11 @@ Projekti toteutettiin **neljässä vaiheessa**, joista jokainen keskittyi eri os
 - Privacy Policy, Cookie Policy ja Terms of Service puuttuivat.  
 
 **Parannukset:**  
-- Lisätty tarvittavat tietosuojadokumentit.  
-- Aloitettu Privacy by Design -periaatteiden huomioiminen.  
+- Lisätty tarvittavat tietosuojadokumentit Privacy Policy, Cookie Policy ja Terms of Service).   
 
 **Mitä opin:**  
-- GDPR ei ole vain lakitekstiä – se vaikuttaa suoraan sovelluksen rakenteeseen ja API-suunnitteluun.  
-- Tietosuojan huomioiminen alusta asti säästää aikaa ja vähentää riskejä.
+- GDPR vaikuttaa suoraan sovelluksen rakenteeseen ja API-suunnitteluun. Sen noudattaminen on tärkeää.
+- Tietosuojan huomioiminen on nykyään todella tärkää.
 
 ---
 
