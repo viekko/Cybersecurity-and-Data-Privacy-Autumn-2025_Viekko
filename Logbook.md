@@ -13,5 +13,18 @@
 | 12.12.2025 | 10 | Phase3 tehtävä  | Phase3 tehtävä ja sen raportointi |
 | 13.12.2025 | 5 | Phase4 tehtävä  | Phase4 tehtävä ja sen raportointi |
 | 14.12.2025 | 7 | Phase4 tehtävä  | Phase4 tehtävä ja sen raportointi |
-| 15.12.2025 | 5 | Loppuraportti ja Portswigger tehtävät | Loppuraportti ja Portswigger tehtävät |
+| 15.12.2025 | 6 | Loppuraportti ja Portswigger tehtävät | Loppuraportti ja Portswigger tehtävät |
 | 16.12.2025 | 6 | Loppuraportti ja Portswigger tehtävät | Loppuraportti ja Portswigger tehtävät |
+| 17.12.2025 | 7 | Loppuraportti ja Portswigger tehtävät | Loppuraportti ja Portswigger tehtävät |
+
+| Topic                                       |   Hours  |
+| ------------------------------------------- | :------: |
+| Course recordings & first tasks             |    8 h   |
+| PortSwigger Web Security Academy labs       |    7 h   |
+| Phase 1 – Docker & ZAP (Part 1 & 2)         |   14 h   |
+| Phase 2 – Password Cracking & Hash Analysis |   11 h   |
+| Phase 3 – Authorization & Access Control    |   10 h   |
+| Phase 4 – GDPR & Privacy Compliance         |   12 h   |
+| Final report & documentation                |   19 h   |
+| **Total**                                   | **81 h** |
+
