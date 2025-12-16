@@ -47,19 +47,71 @@ Projekti jaettiin useaan vaiheeseen (Phase 1–4), jotka on dokumentoitu GitHub-
 
 ## Phase 1 – Docker & ZAP Security Testing
 
-Phase 1 -vaiheessa keskityin booking system -sovelluksen tietoturvan testaamiseen Docker-pohjaisessa testausympäristössä hyödyntäen OWASP ZAP -työkalua. Testauksen tavoitteena oli tunnistaa kriittiset haavoittuvuudet erityisesti rekisteröinti-, autentikointi- ja käyttöoikeusmekanismeissa. Testaus toteutettiin white box -lähestymistavalla, jossa sovelluksen toiminta ja rakenne olivat ennalta tuttuja.
+Tester: Veikko
+Test Environment & Dates: Docker, Linux, MySQL, Chrome, OWASP ZAP
+Start: 23.11.2025 11:00
+End: 23.11.2025 19:00
+Test Approach: White box testing
+Scope: Käyttäjätietokanta, kirjautumis- ja rekisteröintilomakkeet, roolinhallinta, HTTP-pyynnöt, palvelimen tiedostopolut
 
-Mikä toimi:
-ZAP-skannaus ja manuaalinen testaus paljastivat tehokkaasti vakavia haavoittuvuuksia, kuten SQL Injectionin, Path Traversal -ongelman sekä sen, että salasanat oli alun perin tallennettu selkokielisinä. Näiden ongelmien korjaaminen onnistui, ja korjaukset pystyttiin myös verifioimaan uudelleentestaamalla.
+Part 1 – Findings and Evidence
 
-Mikä ei toiminut:
-Kaikkia havaittuja haavoittuvuuksia ei saatu korjattua tässä vaiheessa. Anti-CSRF-tokenit puuttuivat edelleen lomakkeista, ja Content Security Policy (CSP) jäi osittain tai kokonaan toteuttamatta aikataulusyistä.
+Purpose: Tunnistaa kriittiset haavoittuvuudet rekisteröinti-, autentikointi- ja käyttöoikeusprosesseissa sekä arvioida sovelluksen suojaustaso.
 
-Eniten aikaa vei:
-Haavoittuvuuksien syiden ymmärtäminen ja niiden yhdistäminen aiemmin PortSwigger-labratehtävissä opittuihin käsitteisiin vei eniten aikaa, erityisesti SQL Injectionin ja Path Traversal -ongelmien osalta.
+ID	Severity	Finding	Description	Evidence
+F-01	🔴 High	Salaamattomat salasanat	Käyttäjätietokanta tallentaa salasanat selkokielisinä.	Kuva 1
+F-02	🔴 High	SQL Injection	Parametrien manipulointi (esim. AND 1=1 --) palauttaa piilotettua dataa.	Kuva 3
+F-03	🔴 High	Path Traversal	URL-manipulaatio (../) mahdollistaa tiedostojen luvun palvelimelta.	Kuva 4
+F-04	🟠 Medium	Puuttuvat CSRF-tokenit	HTML-lomakkeissa ei ole anti-CSRF-suojausta.	Kuva 6
+F-05	🟠 Medium	Puuttuva CSP	Sivulla ei ole Content Security Policy -asetuksia, altistaa XSS:lle.	Kuva 5
+F-06	🟡 Low	Duplicate accounts	Sama käyttäjä voidaan rekisteröidä useita kertoja.	Kuva 7
 
-Mitä opin:
-Opin, kuinka helposti vakavat tietoturvaongelmat voivat syntyä, jos turvallisuus jätetään huomiotta kehityksen alkuvaiheessa. Lisäksi ymmärsin paremmin, miten automaattiset työkalut kuten OWASP ZAP tukevat, mutta eivät korvaa, manuaalista testausta ja turvallista koodauskäytäntöä.
+Observations / Additional Notes:
+
+Käyttäjät voivat rekisteröidä syntymäpäivän, joka mahdollistaa alle 15-vuotiaiden käyttäjien luomisen.
+
+Anti-CSRF tokenit puuttuvat edelleen rekisteröintilomakkeesta, mikä altistaa CSRF-hyökkäyksille.
+
+CSP puuttuu tai on liian löysä, XSS-hyökkäykset mahdollisia.
+
+Images / Evidence:
+
+Kuva 1: Salaamattomat salasanat tietokannassa
+
+Kuva 2: ZAP-skannauksella löydetyt haavoittuvuudet
+
+Kuva 3: SQL Injection mahdollinen
+
+Kuva 4: Path Traversal mahdollinen
+
+Kuva 5: CSP puuttuu
+
+Kuva 6: CSRF-tokenit puuttuvat
+
+Kuva 7: Duplicate account -ilmoitus
+
+Part 2 – Fixes & Current Status
+
+Top 5 Findings – Status
+
+Finding	Status	Notes / Verification
+Salaamattomat salasanat	Fixed ✅	Salasanat hashattu (bcrypt/argon2). Tietokanta tarkistettu.
+SQL Injection	Fixed ✅	Parametrisoidut kyselyt estävät datavuodot. Testattu.
+Path Traversal	Fixed ✅	URL-manipulaatiot estetty. Testattu ../-poluilla.
+Puuttuvat CSRF-tokenit	Not Fixed ⚠	ZAP-skannaus havaitsee edelleen puuttuvan tokenin rekisteröintilomakkeessa.
+Puuttuva CSP	Not Fixed ⚠	HTTP-header tarkistettu; CSP puuttuu tai liian löysä.
+
+Additional Notes:
+
+CSRF (Cross-Site Request Forgery) riskit ovat edelleen olemassa erityisesti aktiivisilla istunnoilla ja ennakoitavilla URL/form-toiminnoilla.
+
+CSP puuttuminen mahdollistaa XSS-hyökkäykset. Testaus voidaan tehdä manuaalisesti skripteillä kuten <script>alert(1)</script>.
+
+Duplicate account -ongelma ei ole kriittinen, mutta suosittelemme rajoittamaan rekisteröinnit uniikeilla tunnuksilla.
+
+Summary – Phase 1
+
+Phase 1 testauksessa havaittiin useita kriittisiä haavoittuvuuksia, jotka mahdollistivat tietomurrot ja väärinkäytöt. Salaamattomat salasanat, SQL Injection ja Path Traversal on korjattu. Puuttuvat CSRF-tokenit ja CSP ovat edelleen riskialttiita ja vaativat korjausta.
 
 ## Phase 2 – Password Cracking & Hash Analysis
 
