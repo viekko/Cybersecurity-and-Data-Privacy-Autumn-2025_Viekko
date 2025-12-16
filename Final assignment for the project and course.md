@@ -115,53 +115,59 @@ Phase 1 testauksessa havaittiin useita kriittisiä haavoittuvuuksia, jotka mahdo
 
 ## Phase 2 – Password Cracking & Hash Analysis
 
-Phase 2 -vaiheessa keskityin salasanojen murtamiseen ja hashattujen salasanojen analysointiin käyttäen Kali Linux -työkaluja Docker-ympäristössä. Testauksen tavoitteena oli ymmärtää, kuinka heikosti valitut salasanat voidaan murtaa offline-hyökkäyksillä, jos hyökkääjä saa haltuunsa järjestelmän tietokannan tai salasana-hashit.
+Tavoite:
+Testata heikkoja salasanoja ja analysoida hashattuja salasanoja käyttäen offline-hyökkäyksiä. Tavoitteena oli ymmärtää, kuinka helposti heikot tai yleiset salasanat voidaan murtaa, jos hyökkääjä saa haltuunsa hash-tiedoston.
 
-Testauksessa hyödynsin John the Ripper- ja Hashcat-työkaluja, ja kohteena olivat MD5-hashatut salasanat. Käytin sekä valmiita sanalistoja (rockyou.txt), omia sanalistoja että sääntöpohjaisia hyökkäyksiä (rule-based attacks).
+Test Environment:
+Docker, Kali Linux, John the Ripper, Hashcat
 
-Murretut salasanat
+Menetelmät:
 
-Seuraavat salasanat saatiin onnistuneesti murrettua:
+Raw-MD5 cracking – John the Ripper tunnisti nopeasti heikot salasanat.
 
-carrots123 – murrettu John the Ripperillä käyttäen raw-MD5-formaattia
+Dictionary attack – rockyou.txt -sanalistan avulla löydettiin useita yleisiä salasanoja.
 
-donuts4life – murrettu John the Ripper dictionary attack -menetelmällä
+Rule-based attack – Hashcat sääntöpohjaiset hyökkäykset (dive.rule, best64.rule) generoivat variaatioita (numerot, erikoismerkit, kirjainkoot).
 
-darkside42 – murrettu John the Ripper dictionary attack -menetelmällä
+Optimized kernel (-O) – paransi hyökkäyksen suorituskykyä.
 
-iamironman – murrettu John the Ripper dictionary attack -menetelmällä
+Mask attack (brute-force pattern) – tarkennettu brute-force hyökkäys ennakoitujen salasanamallien perusteella.
 
-chaos123! – murrettu Hashcatilla käyttäen rockyou.txt-sanalistaa ja dive.rule-sääntöjä
+Murretut salasanat – Summary Table
 
-iamvengeance – murrettu Hashcatilla rule-based attack -menetelmällä
+#	Password	Tool / Method	Status	Evidence
+1	carrots123	John the Ripper, raw-MD5	Cracked ✅	Picture 2
+2	donuts4life	John the Ripper, dictionary attack	Cracked ✅	Picture 2
+3	darkside42	John the Ripper, dictionary attack	Cracked ✅	Picture 3
+4	iamironman	John the Ripper, dictionary attack	Cracked ✅	Picture 3
+5	chaos123!	Hashcat, rockyou.txt + dive.rule	Cracked ✅	Picture 4
+6	iamvengeance	Hashcat, rule-based attack	Cracked ✅	Picture 4
 
-(Katso kuvat 2–4.)
+Observations / Additional Notes:
 
-Käytetyt menetelmät
+Useimmat yleiset ja ennakoitavat salasanat murtuivat nopeasti.
 
-Dictionary attack: Hyödynsi yleisiä salasanalistoja ja paljasti useita helposti arvattavia salasanoja.
+Monimutkaisempien salasanojen kohdalla Hashcatin sääntöpohjaiset hyökkäykset olivat tehokkaampia.
 
-Rule-based attack: Sääntöjen avulla generoitiin variaatioita (numerot, erikoismerkit, kirjainkoot), mikä mahdollisti monimutkaisempien salasanojen murtamisen.
+Kaikkia hasheja ei saatu murrettua, mikä osoittaa pitkien ja satunnaisten salasanojen vahvuuden.
 
-Optimized kernel (-O): Paransi suorituskykyä, vaikka ei yksinään lisännyt murrettujen salasanojen määrää.
+Omien sanalistojen hyödyntäminen ja sääntöpohjaiset variaatiot laajensivat mahdollisia hyökkäysmahdollisuuksia.
 
-Mask attack (teoreettinen): Tarkasteltiin maskihyökkäystä tehokkaana vaihtoehtona tilanteissa, joissa salasanamallit ovat ennakoitavia (esim. Word123!).
+Vinkkejä ja huomioita:
 
-Mikä toimi
+Dictionary vs. Non-dictionary attacks – Sanakirjahyökkäykset perustuvat valmiisiin listohin, brute-force yrittää kaikkia mahdollisia yhdistelmiä.
 
-Yleiset ja ennakoitavat salasanat murtuivat nopeasti, erityisesti silloin kun ne perustuivat sanakirjasanoihin tai yksinkertaisiin variaatioihin. Hashcatin sääntöpohjaiset hyökkäykset osoittautuivat erityisen tehokkaiksi monimutkaisempien salasanojen kohdalla.
+Hyödyt hashien saannista – Mahdollistaa offline-hyökkäyksen ilman järjestelmän havaitsemista; hyökkääjä voi kohdistaa tiettyihin käyttäjiin ja käyttää salasanoja useissa järjestelmissä.
 
-Mikä ei toiminut
+Pitkät salasanat – Lisäävät eksponentiaalisesti avaruuden kokoa, vaikeuttaen brute-force ja sanakirjahyökkäyksiä.
 
-Kaikkia hasheja ei saatu murrettua, vaikka käytössä oli useita sanalistoja, omia wordlistejä ja eri sääntökokoelmia. Tämä osoitti, että pidemmät ja vähemmän ennakoitavat salasanat kestävät merkittävästi paremmin offline-hyökkäyksiä.
+Opinnot:
 
-Eniten aikaa vei
+Heikot salasanat ja vanhentuneet hash-algoritmit (kuten MD5) ovat merkittävä riski.
 
-Komentojen optimointi, rule-tiedostojen polkujen korjaaminen sekä hyökkäysmenetelmien testaaminen ja vertaileminen veivät eniten aikaa.
+Offline-hyökkäykset mahdollistavat hyökkääjälle laajat mahdollisuudet, mikä korostaa vahvojen hashien (bcrypt/Argon2) ja pitkien, satunnaisten salasanojen merkitystä.
 
-Mitä opin
-
-Opin konkreettisesti, kuinka vaarallista on käyttää heikkoja tai yleisiä salasanoja sekä vanhentuneita hash-algoritmeja kuten MD5:tä. Lisäksi ymmärsin, miksi hyökkääjälle pääsy salasana-hasheihin on erittäin vakava tietoturvariski ja miksi modernit hash-algoritmit (bcrypt, Argon2) ja pitkät salasanat ovat välttämättömiä.
+Käytännön testaus opetti, miten erilaiset hyökkäystavat täydentävät toisiaan ja millaisia suorituskykyyn liittyviä optimointeja voidaan tehdä.
 
 
 ## Phase 3 – Authorization & Access Control Testing
