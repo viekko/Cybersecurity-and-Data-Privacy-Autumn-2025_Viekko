@@ -13,3 +13,5 @@
 | 12.12.2025 | 10 | Phase3 tehtävä  | Phase3 tehtävä ja sen raportointi |
 | 13.12.2025 | 5 | Phase4 tehtävä  | Phase4 tehtävä ja sen raportointi |
 | 14.12.2025 | 7 | Phase4 tehtävä  | Phase4 tehtävä ja sen raportointi |
+| 15.12.2025 | 5 | Loppuraportti ja Portswigger tehtävät | Loppuraportti ja Portswigger tehtävät |
+| 16.12.2025 | 6 | Loppuraportti ja Portswigger tehtävät | Loppuraportti ja Portswigger tehtävät |
