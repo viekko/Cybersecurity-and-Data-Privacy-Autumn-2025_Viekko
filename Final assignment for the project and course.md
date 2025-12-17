@@ -37,13 +37,13 @@ Alla on lista PortSwigger Web Security Academy ‑labratehtävistä, jotka suori
 <img width="887" height="1126" alt="image" src="https://github.com/user-attachments/assets/6b423424-4813-4466-8464-8328c01e6008" />
 <img width="1004" height="576" alt="image" src="https://github.com/user-attachments/assets/030e33e5-3fbb-4a16-9123-3c2694df7fab" />
 
-Kuvasarja 1. Suorittamani Portswigger labit-
+Kuvasarja 1. Suorittamani Portswigger labit.
 
 
 ---
 
 # Booking System Project
-Projekti toteutettiin **neljässä vaiheessa**, joista jokainen keskittyi eri osa-alueisiin web-sovelluksen tietoturvassa. Dokumentaatio löytyy GitHubista (linkki liitetään raporttiin).
+Projekti toteutettiin **neljässä vaiheessa**, joista jokainen keskittyi eri osa-alueisiin web-sovelluksen tietoturvassa. Dokumentaatio löytyy tästä reporsta GitHubista.
 
 ---
 
