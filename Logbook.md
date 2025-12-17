@@ -20,11 +20,11 @@
 | Topic                                       |   Hours  |
 | ------------------------------------------- | :------: |
 | Course recordings & first tasks             |    8 h   |
-| PortSwigger Web Security Academy labs       |    7 h   |
+| PortSwigger Web Security Academy labs       |   16 h   |
 | Phase 1 – Docker & ZAP (Part 1 & 2)         |   14 h   |
 | Phase 2 – Password Cracking & Hash Analysis |   11 h   |
 | Phase 3 – Authorization & Access Control    |   10 h   |
 | Phase 4 – GDPR & Privacy Compliance         |   12 h   |
-| Final report & documentation                |   19 h   |
+| Final report & documentation                |   10 h   |
 | **Total**                                   | **81 h** |
 
